@@ -19,15 +19,24 @@ pipeline {
     }
 
     stage("Build Images") {
-      steps {
-        sh '''
-          GIT_SHA=$(git rev-parse --short HEAD)
+  steps {
+    sh '''
+      echo "==== WHERE AM I? ===="
+      pwd
+      ls -la
+      echo "==== FRONTEND FOLDER ===="
+      ls -la frontend || true
+      echo "==== BACKEND FOLDER ===="
+      ls -la backend || true
+      echo "======================="
 
-          docker build -t tech2-frontend:$GIT_SHA ./frontend
-          docker build -t tech2-backend:$GIT_SHA  ./backend
-        '''
-      }
-    }
+      GIT_SHA=$(git rev-parse --short HEAD)
+
+      docker build -t tech2-frontend:$GIT_SHA ./frontend
+      docker build -t tech2-backend:$GIT_SHA ./backend
+    '''
+  }
+}
 
     stage("Login to ECR") {
       steps {
