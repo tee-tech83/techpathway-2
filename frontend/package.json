@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,8 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "overrides": {
-    "postcss": "7.0.39",
-    "autoprefixer": "9.8.8"
+  "devDependencies": {
+    "typescript": "4.9.5"
   }
 }
